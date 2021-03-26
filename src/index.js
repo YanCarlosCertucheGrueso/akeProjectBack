@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var fs=require('fs');
 var data=fs.readFileSync('src/Movies.json', 'utf8');
 var words=JSON.parse(data);
-
+var Akelab = '123456789';
 var app = express();
 var port = process.env.PORT || 3525;
 
@@ -11,8 +11,15 @@ var port = process.env.PORT || 3525;
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-app.get('/', function(req, res){
-	res.status(200).send(words);
+app.get('/movies/:token', function(req, res){
+    let token = req.params.token;
+    console.log(token)
+    if(token === Akelab){
+	    res.status(200).send(words);
+    }
+    else{
+        res.status(201).send({messege : 'need token'})
+    }
 });
 
 app.listen(port, function(){
