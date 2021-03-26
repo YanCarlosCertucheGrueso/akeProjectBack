@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var fs=require('fs');
-var data=fs.readFileSync('movies.json', 'utf8');
+var data=fs.readFileSync('src/Movies.json', 'utf8');
 var words=JSON.parse(data);
 
 var app = express();
