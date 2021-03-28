@@ -6,12 +6,14 @@ var words=JSON.parse(data);
 var Akelab = '123456789';
 var cors = require('cors')
 var app = express();
-var app.use(cors());
+
+
 var port = process.env.PORT || 3525;
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(cors({origin: '*'}));
 
 app.get('/movies/:token', function(req, res){
     let token = req.params.token;
